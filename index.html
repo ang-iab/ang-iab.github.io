@@ -4,21 +4,16 @@
   <meta charset="UTF-8" />
   <title>Your Name | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal portfolio of Your Name: projects, resume, and contact information." />
+  <meta name="description" content="Personal portfolio of Your Name: projects, experience, and resume." />
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-alt: #020617;
-      --card: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.1);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: #1f2933;
-      --radius-lg: 16px;
-      --radius-xl: 999px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.6);
-      --max-width: 1000px;
+      --bg: #ffffff;
+      --bg-alt: #f9fafb;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --link: #2563eb;
+      --max-width: 800px;
     }
 
     * {
@@ -27,25 +22,20 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
-      color: var(--text-main);
+      background: var(--bg-alt);
+      color: var(--text);
       line-height: 1.6;
     }
 
     a {
-      color: inherit;
+      color: var(--link);
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    a:hover {
+      text-decoration: underline;
     }
 
     .page {
@@ -58,853 +48,382 @@
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.2rem;
+      padding: 0 1rem;
     }
 
-    /* NAVBAR */
-    .nav {
+    /* HEADER / NAV */
+    header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.7), transparent);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+      z-index: 10;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-inner {
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0;
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
     }
 
     .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .nav-logo-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #38bdf8, #0ea5e9, #6366f1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #0b1220;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.9);
-    }
-
-    .nav-name {
       font-weight: 600;
-      font-size: 0.98rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+      letter-spacing: 0.03em;
     }
 
-    .nav-links {
+    nav ul {
       display: flex;
-      align-items: center;
-      gap: 1.4rem;
+      list-style: none;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    section:nth-of-type(odd) {
+      background: var(--bg-alt);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    p {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .muted {
+      color: var(--muted);
       font-size: 0.9rem;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(to right, #38bdf8, #22c55e);
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link:hover {
-      color: var(--text-main);
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        gap: 0.9rem;
-        font-size: 0.82rem;
-      }
-      .nav-name {
-        display: none;
-      }
     }
 
     /* HERO */
     .hero {
-      padding: 3.5rem 0 2.5rem;
+      padding-top: 2rem;
     }
 
-    .hero-inner {
+    .hero-top {
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+
+    .hero-role {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .hero-links {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-links a {
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    .hero-links a:hover {
+      border-color: var(--text);
+      background: #f3f4f6;
+    }
+
+    /* LAYOUT HELPERS */
+    .two-col {
       display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.2fr);
-      gap: 2.5rem;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
     }
 
-    @media (max-width: 900px) {
-      .hero-inner {
+    @media (max-width: 720px) {
+      .two-col {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 0.9rem;
-      border-radius: var(--radius-xl);
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-muted);
+    ul {
+      padding-left: 1.1rem;
+      font-size: 0.94rem;
+    }
+
+    li + li {
+      margin-top: 0.2rem;
+    }
+
+    .label {
       font-size: 0.78rem;
-      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
     }
 
-    .hero-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(to right, #38bdf8, #22c55e);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 34rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-buttons {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.12rem 0.55rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #ffffff;
+    }
+
+    .item {
+      margin-bottom: 1rem;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: baseline;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .item-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .item-right {
+      font-size: 0.85rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
-      font-size: 0.88rem;
-      padding: 0.55rem 1.2rem;
-      border-radius: var(--radius-xl);
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--text);
+      font-size: 0.9rem;
+      color: var(--text);
       text-decoration: none;
-      white-space: nowrap;
+      background: #ffffff;
     }
 
-    .btn-primary {
-      background: radial-gradient(circle at 0% 0%, #38bdf8, #0ea5e9, #6366f1);
-      color: #0b1220;
-      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.45);
-      font-weight: 600;
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--muted);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.6);
+    .btn:hover {
+      text-decoration: none;
+      background: #111827;
+      color: white;
     }
 
-    .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--text-muted);
+    .btn-secondary:hover {
+      background: #e5e7eb;
+      color: var(--text);
     }
 
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--text-main);
-      background: rgba(15, 23, 42, 1);
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.8);
+    footer {
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+      margin-top: 1rem;
     }
 
-    .hero-meta {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 1.2rem;
-    }
-
-    .hero-meta span {
-      opacity: 0.9;
-    }
-
-    .hero-meta-label {
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      font-size: 0.7rem;
-      color: #64748b;
-    }
-
-    .hero-right {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-card {
-      width: 100%;
-      max-width: 320px;
-      border-radius: 1.4rem;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 60%), rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: var(--shadow-soft);
-      padding: 1.3rem 1.25rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .hero-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 1.3rem;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #22c55e, #6366f1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #020617;
-      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.6);
-    }
-
-    .hero-card-title {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .hero-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-    }
-
-    .hero-tag {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-mini-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.6rem;
-      margin-top: 0.3rem;
-      font-size: 0.78rem;
-    }
-
-    .mini-card {
-      padding: 0.35rem 0.5rem;
-      border-radius: 0.8rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(30, 64, 175, 0.7);
-    }
-
-    .mini-label {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-    }
-
-    .mini-value {
-      font-weight: 600;
-      font-size: 0.86rem;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 2.4rem 0;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 1.4rem;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* ABOUT */
-    .about-body {
-      display: grid;
-      grid-template-columns: minmax(0, 2.4fr) minmax(0, 2fr);
-      gap: 1.6rem;
-    }
-
-    @media (max-width: 900px) {
-      .about-body {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .about-text {
-      font-size: 0.94rem;
-      color: var(--text-main);
-    }
-
-    .about-text p + p {
-      margin-top: 0.7rem;
-    }
-
-    .about-side-card {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 1rem 1.1rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.5rem;
-    }
-
-    .chip {
-      font-size: 0.75rem;
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text-main);
-    }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    @media (max-width: 900px) {
-      .skills-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      .skills-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .skill-card {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(30, 64, 175, 0.75);
-      padding: 0.9rem 1rem;
-      font-size: 0.86rem;
-    }
-
-    .skill-title {
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      font-size: 0.92rem;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.25rem;
-    }
-
-    .skill-tag {
-      font-size: 0.72rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-muted);
-    }
-
-    /* PROJECTS */
-    .project-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.6fr);
-      gap: 1.4rem;
-    }
-
-    @media (max-width: 900px) {
-      .project-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .project-card {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      padding: 1rem 1.1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    .project-content {
-      position: relative;
-    }
-
-    .project-meta {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #93c5fd;
-    }
-
-    .project-title {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-top: 0.1rem;
-    }
-
-    .project-desc {
-      font-size: 0.86rem;
-      color: var(--text-main);
-      margin-top: 0.2rem;
-    }
-
-    .project-details {
+    footer p {
       font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-    }
-
-    .project-tag {
-      font-size: 0.7rem;
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-muted);
-    }
-
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.6rem;
-      font-size: 0.8rem;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: #bfdbfe;
-    }
-
-    .project-link span {
-      font-size: 0.95em;
-    }
-
-    /* EXPERIENCE / EDUCATION */
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.4fr);
-      gap: 1.4rem;
-    }
-
-    @media (max-width: 900px) {
-      .two-col {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .timeline {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      padding: 1rem 1.1rem;
-      font-size: 0.86rem;
-    }
-
-    .timeline-item + .timeline-item {
-      border-top: 1px solid rgba(30, 64, 175, 0.5);
-      margin-top: 0.7rem;
-      padding-top: 0.7rem;
-    }
-
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.5rem;
-    }
-
-    .timeline-role {
-      font-weight: 600;
-    }
-
-    .timeline-org {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .timeline-date {
-      font-size: 0.78rem;
-      color: #93c5fd;
-      white-space: nowrap;
-    }
-
-    .timeline-desc {
-      margin-top: 0.25rem;
-      color: var(--text-muted);
-    }
-
-    .timeline-bullets {
-      margin-top: 0.45rem;
-      padding-left: 1.1rem;
-    }
-
-    .timeline-bullets li {
-      margin-bottom: 0.08rem;
-    }
-
-    /* RESUME */
-    .resume-card {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 1rem 1.1rem 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.9rem;
-    }
-
-    .resume-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 0.2rem;
-    }
-
-    /* CONTACT / FOOTER */
-    .contact-card {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(15, 118, 110, 0.8);
-      padding: 1rem 1.1rem;
-      font-size: 0.88rem;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
-      gap: 1.2rem;
-    }
-
-    @media (max-width: 900px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: #a5b4fc;
-    }
-
-    .footer {
-      padding: 1.6rem 0 2.4rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
+      color: var(--muted);
       text-align: center;
-    }
-
-    .footer span {
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- NAVBAR -->
-    <header class="nav">
-      <div class="shell nav-inner">
-        <div class="nav-left">
-          <div class="nav-logo-circle">
-            <!-- TODO: Put your initials here -->
-            YN
-          </div>
-          <div class="nav-name">Your Name</div>
-        </div>
-        <nav class="nav-links">
-          <a class="nav-link" href="#about">About</a>
-          <a class="nav-link" href="#skills">Skills</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#experience">Experience</a>
-          <a class="nav-link" href="#resume">Resume</a>
-          <a class="nav-link" href="#contact">Contact</a>
+    <!-- NAV -->
+    <header>
+      <div class="shell nav">
+        <div class="nav-left">Your Name</div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
       <!-- HERO -->
       <section class="hero">
-        <div class="shell hero-inner">
-          <div>
-            <div class="hero-pill">
-              <span class="hero-dot"></span>
-              <span>Open to internships & collaborations</span>
-            </div>
-            <h1 class="hero-title">
-              Hi, I’m <span class="hero-highlight">Your Name</span> — a
-              <span class="hero-highlight">[Your Role: e.g. Applied Math & CS Student]</span>
-              building things at the intersection of code and ideas.
-            </h1>
-            <p class="hero-subtitle">
-              I enjoy solving problems with data, algorithms, and clean design.
-              My interests include <strong>machine learning</strong>, <strong>systems programming</strong>,
-              and <strong>quantitative finance</strong>. I like turning messy problems into
-              clear, reliable tools.
-            </p>
-            <div class="hero-buttons">
-              <!-- TODO: Replace resume.pdf with your actual resume file path -->
-              <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">
-                View Resume
-              </a>
-              <!-- TODO: Replace with your GitHub URL -->
-              <a class="btn btn-ghost" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
-                View GitHub
-              </a>
+        <div class="shell">
+          <div class="hero-top">
+            <div class="hero-title-line">
+              <h1>Your Name</h1>
+              <div class="hero-role">Your Role · e.g. Applied Math & CS Student</div>
             </div>
             <div class="hero-meta">
-              <div>
-                <div class="hero-meta-label">Focus</div>
-                <span>Algorithms · ML · Backend · Data</span>
-              </div>
-              <div>
-                <div class="hero-meta-label">Currently</div>
-                <span>Undergraduate @ Your University</span>
-              </div>
+              City, Country · Interested in SWE / ML / Quant roles
             </div>
           </div>
-
-          <aside class="hero-right">
-            <div class="hero-card">
-              <div style="display:flex; align-items:center; gap:0.9rem;">
-                <div class="hero-avatar">
-                  <!-- TODO: Same initials or small emoji -->
-                  YN
-                </div>
-                <div>
-                  <div class="hero-card-title">Your Name</div>
-                  <div style="font-size:0.8rem; color:var(--text-muted);">
-                    [Your Major] · Class of [Year]
-                  </div>
-                </div>
-              </div>
-
-              <div class="hero-tag-row">
-                <span class="hero-tag">C++ · Python</span>
-                <span class="hero-tag">PyTorch / ML</span>
-                <span class="hero-tag">Git · Linux</span>
-              </div>
-
-              <div class="hero-mini-metrics">
-                <div class="mini-card">
-                  <div class="mini-label">Projects</div>
-                  <div class="mini-value">10+</div>
-                </div>
-                <div class="mini-card">
-                  <div class="mini-label">GitHub Stars</div>
-                  <div class="mini-value">X</div>
-                </div>
-                <div class="mini-card">
-                  <div class="mini-label">Hackathons</div>
-                  <div class="mini-value">Y</div>
-                </div>
-              </div>
-
-              <div style="border-top:1px solid rgba(148,163,184,0.4); margin-top:0.6rem; padding-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">
-                Looking for opportunities in <strong>Software Engineering</strong>,
-                <strong>Machine Learning</strong>, or <strong>Quant Research/Trading</strong>.
-              </div>
-            </div>
-          </aside>
+          <p>
+            Short 2–3 sentence summary: who you are, what you like working on,
+            and what kinds of problems you enjoy solving. For example: I like
+            building reliable software, studying algorithms, and experimenting with
+            machine learning models on real-world data.
+          </p>
+          <div class="hero-links">
+            <!-- TODO: replace links -->
+            <a href="mailto:you@example.com">Email</a>
+            <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="#resume">Resume</a>
+          </div>
         </div>
       </section>
 
       <!-- ABOUT -->
-      <section id="about" class="section">
+      <section id="about">
         <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">About</h2>
-            <p class="section-subtitle">
-              Short background, interests, and how you think about problems.
-            </p>
-          </div>
-          <div class="about-body">
-            <div class="about-text">
+          <h2>About</h2>
+          <div class="two-col">
+            <div>
               <p>
-                I’m a [year] undergraduate studying <strong>[Your Major]</strong> with a
-                minor in <strong>[Your Minor]</strong>. I enjoy modeling real-world systems,
-                building tools that make workflows faster, and using math to reason about
-                uncertainty.
+                I’m a [year] undergraduate studying <strong>[Your Major]</strong> at
+                <strong>[Your University]</strong>. I’m interested in algorithms, machine
+                learning, and using math to reason about complex systems.
               </p>
               <p>
-                Recently, I’ve been working on projects involving <strong>neural networks</strong>,
-                <strong>graph algorithms</strong>, and <strong>efficient data structures</strong>.
-                I like collaborating with people from different disciplines and
-                explaining technical ideas clearly.
+                Recently, I’ve been working on projects involving data structures in C++,
+                neural networks in Python, and small tools that automate parts of my
+                workflow. I enjoy taking a problem from idea to a clean, working implementation.
               </p>
               <p>
-                Outside of coursework, I spend time exploring open-source projects, reading about
-                systems design and trading, and sometimes writing about what I learn.
+                Outside of classes, I read about systems design, quantitative trading,
+                and occasionally write or share notes on what I’m learning.
               </p>
             </div>
-            <aside class="about-side-card">
-              <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.15em; color:#93c5fd; margin-bottom:0.3rem;">
-                Snapshot
+            <div>
+              <div class="label">Interests</div>
+              <div class="chip-row">
+                <span class="chip">Machine Learning</span>
+                <span class="chip">Algorithms</span>
+                <span class="chip">Computer Vision</span>
+                <span class="chip">Quant Finance</span>
               </div>
-              <div>
-                <strong>Interests</strong>
-                <div class="chips">
-                  <span class="chip">Machine Learning</span>
-                  <span class="chip">Computer Vision</span>
-                  <span class="chip">Algorithms</span>
-                  <span class="chip">Quant Finance</span>
-                </div>
-              </div>
-              <div style="margin-top:0.6rem;">
-                <strong>Currently learning</strong>
-                <div class="chips">
+              <div style="margin-top:1rem;">
+                <div class="label">Currently learning</div>
+                <div class="chip-row">
                   <span class="chip">Deep Learning</span>
-                  <span class="chip">C++ STL / Templates</span>
-                  <span class="chip">Distributed Systems</span>
+                  <span class="chip">C++ STL</span>
+                  <span class="chip">Linux tooling</span>
                 </div>
               </div>
-            </aside>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- SKILLS -->
-      <section id="skills" class="section">
+      <section id="skills">
         <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">Skills</h2>
-            <p class="section-subtitle">
-              Languages, tools, and domains you’re comfortable working with.
-            </p>
-          </div>
-          <div class="skills-grid">
-            <div class="skill-card">
-              <div class="skill-title">Languages</div>
-              <div>Write production-level code and course projects.</div>
-              <div class="skill-tags">
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">HTML/CSS/JS</span>
+          <h2>Skills</h2>
+          <div class="two-col">
+            <div>
+              <div class="label">Languages</div>
+              <p class="muted">Used in coursework and personal projects.</p>
+              <div class="chip-row">
+                <span class="chip">C++</span>
+                <span class="chip">Python</span>
+                <span class="chip">Java</span>
+                <span class="chip">HTML/CSS/JS</span>
               </div>
             </div>
-            <div class="skill-card">
-              <div class="skill-title">ML & Data</div>
-              <div>Building and training models, analysis, and experiments.</div>
-              <div class="skill-tags">
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">scikit-learn</span>
-              </div>
-            </div>
-            <div class="skill-card">
-              <div class="skill-title">Systems & Tools</div>
-              <div>Dev tooling, debugging, and deployment basics.</div>
-              <div class="skill-tags">
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">VS Code</span>
+            <div>
+              <div class="label">Tools & Libraries</div>
+              <p class="muted">For building, experimenting, and debugging.</p>
+              <div class="chip-row">
+                <span class="chip">Git & GitHub</span>
+                <span class="chip">Linux</span>
+                <span class="chip">PyTorch</span>
+                <span class="chip">NumPy / Pandas</span>
+                <span class="chip">VS Code</span>
               </div>
             </div>
           </div>
@@ -912,315 +431,203 @@
       </section>
 
       <!-- PROJECTS -->
-      <section id="projects" class="section">
+      <section id="projects">
         <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">
-              Selected projects that highlight your interests and strengths.
-            </p>
-          </div>
-          <div class="project-grid">
-            <!-- PROJECT 1 -->
-            <article class="project-card">
-              <div class="project-content">
-                <div class="project-meta">Machine Learning · Personal Project</div>
-                <h3 class="project-title">Image Captioning with CNN + RNN</h3>
-                <p class="project-desc">
-                  Built an end-to-end image captioning system using a CNN encoder and
-                  LSTM decoder. Trained on a subset of MS COCO to generate natural
-                  language descriptions for unseen images.
-                </p>
-                <p class="project-details">
-                  Implemented custom training loops, beam search decoding, and BLEU score
-                  evaluation. Experimented with different attention mechanisms to improve
-                  fluency and relevance.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">PyTorch</span>
-                  <span class="project-tag">Computer Vision</span>
-                  <span class="project-tag">LSTM</span>
-                  <span class="project-tag">Attention</span>
-                </div>
-                <div class="project-links">
-                  <!-- TODO: Replace with actual repo/demo links -->
-                  <a class="project-link" href="https://github.com/YOUR_GITHUB_USERNAME/IMAGE_CAPTIONING_REPO" target="_blank" rel="noopener noreferrer">
-                    <span>GitHub</span> →
-                  </a>
-                  <a class="project-link" href="#" target="_blank" rel="noopener noreferrer">
-                    <span>Demo / Write-up</span> →
-                  </a>
-                </div>
-              </div>
-            </article>
+          <h2>Projects</h2>
 
-            <!-- PROJECT 2 -->
-            <article class="project-card">
-              <div class="project-content">
-                <div class="project-meta">Systems · Coursework / Personal</div>
-                <h3 class="project-title">C++ Data Structures Library</h3>
-                <p class="project-desc">
-                  Implemented a library of data structures including vector, linked list,
-                  hash table, heap, and self-balancing BST, with a focus on clean APIs and
-                  asymptotic guarantees.
-                </p>
-                <p class="project-details">
-                  Benchmarked performance vs. STL structures, profiled bottlenecks, and
-                  wrote unit tests to verify correctness across edge cases.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">C++</span>
-                  <span class="project-tag">Algorithms</span>
-                  <span class="project-tag">Data Structures</span>
-                  <span class="project-tag">Unit Testing</span>
-                </div>
-                <div class="project-links">
-                  <a class="project-link" href="https://github.com/YOUR_GITHUB_USERNAME/CPP_DS_LIB" target="_blank" rel="noopener noreferrer">
-                    <span>GitHub</span> →
-                  </a>
-                </div>
+          <!-- Project 1 -->
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Image Captioning Model</div>
+                <div class="item-sub">Personal Project · Machine Learning</div>
               </div>
-            </article>
-
-            <!-- PROJECT 3 -->
-            <article class="project-card">
-              <div class="project-content">
-                <div class="project-meta">Quantitative · Personal Project</div>
-                <h3 class="project-title">Trading Strategy Backtester</h3>
-                <p class="project-desc">
-                  Created a lightweight backtesting engine to simulate rule-based
-                  strategies over historical equity data with transaction costs and
-                  position sizing.
-                </p>
-                <p class="project-details">
-                  Included performance metrics (CAGR, Sharpe, max drawdown) and visual
-                  dashboards for equity curves and drawdown analysis.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Pandas</span>
-                  <span class="project-tag">Backtesting</span>
-                  <span class="project-tag">Finance</span>
-                </div>
-                <div class="project-links">
-                  <a class="project-link" href="https://github.com/YOUR_GITHUB_USERNAME/TRADING_BACKTESTER" target="_blank" rel="noopener noreferrer">
-                    <span>GitHub</span> →
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJECT 4 -->
-            <article class="project-card">
-              <div class="project-content">
-                <div class="project-meta">Web · Hackathon / Personal</div>
-                <h3 class="project-title">Study Planner Dashboard</h3>
-                <p class="project-desc">
-                  Built a web app that visualizes tasks, deadlines, and study sessions
-                  with a calendar and Kanban-style board tailored for university courses.
-                </p>
-                <p class="project-details">
-                  Implemented responsive UI, local storage persistence, and lightweight
-                  analytics to show time allocation across courses over a semester.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">HTML/CSS/JS</span>
-                  <span class="project-tag">Frontend</span>
-                  <span class="project-tag">Productivity</span>
-                </div>
-                <div class="project-links">
-                  <a class="project-link" href="https://github.com/YOUR_GITHUB_USERNAME/STUDY_PLANNER" target="_blank" rel="noopener noreferrer">
-                    <span>GitHub</span> →
-                  </a>
-                  <a class="project-link" href="#" target="_blank" rel="noopener noreferrer">
-                    <span>Live Demo</span> →
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- EXPERIENCE + EDUCATION -->
-      <section id="experience" class="section">
-        <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">Experience & Education</h2>
-            <p class="section-subtitle">
-              Work, internships, research, and where you’ve studied.
-            </p>
-          </div>
-          <div class="two-col">
-            <!-- EXPERIENCE -->
-            <div class="timeline">
-              <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.15em; color:#93c5fd; margin-bottom:0.4rem;">
-                Experience
-              </div>
-
-              <!-- JOB 1 -->
-              <div class="timeline-item">
-                <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">Software Engineering Intern</div>
-                    <div class="timeline-org">Company Name</div>
-                  </div>
-                  <div class="timeline-date">Summer 20XX · Location</div>
-                </div>
-                <p class="timeline-desc">
-                  Worked with a small team to build internal tools and improve developer workflows.
-                </p>
-                <ul class="timeline-bullets">
-                  <li>Implemented features in [tech stack] that reduced manual work by X%.</li>
-                  <li>Wrote tests and documentation to keep the codebase maintainable.</li>
-                </ul>
-              </div>
-
-              <!-- JOB 2 -->
-              <div class="timeline-item">
-                <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">Undergraduate Research Assistant</div>
-                    <div class="timeline-org">Lab / Department Name</div>
-                  </div>
-                  <div class="timeline-date">20XX – 20XX · Your University</div>
-                </div>
-                <p class="timeline-desc">
-                  Assisted with research on [short description: e.g. ML for X, algorithms for Y].
-                </p>
-                <ul class="timeline-bullets">
-                  <li>Built data pipelines and ran experiments on [dataset].</li>
-                  <li>Helped analyze results and prepare figures for presentations.</li>
-                </ul>
-              </div>
+              <div class="item-right">Python · PyTorch</div>
             </div>
-
-            <!-- EDUCATION -->
-            <div class="timeline">
-              <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.15em; color:#93c5fd; margin-bottom:0.4rem;">
-                Education
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">B.S. in [Your Major]</div>
-                    <div class="timeline-org">Your University</div>
-                  </div>
-                  <div class="timeline-date">20XX – 20XX (Expected)</div>
-                </div>
-                <p class="timeline-desc">
-                  Relevant coursework: Data Structures & Algorithms, Probability, Linear Algebra,
-                  Machine Learning, Systems Programming, Optimization.
-                </p>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">Additional Highlights</div>
-                    <div class="timeline-org">Awards / Activities</div>
-                  </div>
-                </div>
-                <p class="timeline-desc">
-                  Scholarships, dean’s list, programming contests, hackathons, clubs, or TA roles.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RESUME SECTION -->
-      <section id="resume" class="section">
-        <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">Resume</h2>
-            <p class="section-subtitle">
-              Quick summary plus a link to download the full document.
-            </p>
-          </div>
-          <div class="resume-card">
             <p>
-              My resume summarizes my academic background, projects, and experience in one page.
-              If you’d like a PDF copy, you can download it below.
+              Built an image captioning system using a CNN encoder and RNN decoder to
+              generate short descriptions for images. Trained on a subset of a captioned
+              dataset, evaluated with BLEU scores, and experimented with attention.
             </p>
-            <ul style="margin-left:1.1rem; font-size:0.86rem; color:var(--text-muted);">
-              <li>Technologies: C++, Python, PyTorch, Git, Linux, Docker</li>
-              <li>Interests: Machine learning, algorithms, quantitative methods</li>
-              <li>Highlights: Key internships, research roles, and independent projects</li>
+            <p class="muted">
+              <a href="https://github.com/YOUR_GITHUB_USERNAME/IMAGE_CAPTIONING_REPO" target="_blank" rel="noopener noreferrer">
+                GitHub repository
+              </a>
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">C++ Data Structures Library</div>
+                <div class="item-sub">Coursework / Personal</div>
+              </div>
+              <div class="item-right">C++</div>
+            </div>
+            <p>
+              Implemented vector, linked list, hash table, heap, and binary search tree
+              from scratch, focusing on asymptotic performance and clean APIs. Wrote small
+              tests and benchmarks to compare behavior with STL containers.
+            </p>
+            <p class="muted">
+              <a href="https://github.com/YOUR_GITHUB_USERNAME/CPP_DS_LIB" target="_blank" rel="noopener noreferrer">
+                GitHub repository
+              </a>
+            </p>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Trading Strategy Backtester</div>
+                <div class="item-sub">Personal Project · Quantitative</div>
+              </div>
+              <div class="item-right">Python</div>
+            </div>
+            <p>
+              Developed a small backtesting engine to simulate rule-based trading
+              strategies on historical equity data. Included performance metrics like
+              Sharpe ratio, max drawdown, and simple visualizations.
+            </p>
+            <p class="muted">
+              <a href="https://github.com/YOUR_GITHUB_USERNAME/TRADING_BACKTESTER" target="_blank" rel="noopener noreferrer">
+                GitHub repository
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="shell">
+          <h2>Experience</h2>
+
+          <!-- Experience 1 -->
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Software Engineering Intern</div>
+                <div class="item-sub">Company Name · Location</div>
+              </div>
+              <div class="item-right">Summer 20XX</div>
+            </div>
+            <p>
+              Worked on internal tools and small features in a [tech stack]. Focused on
+              writing clear code, adding tests, and improving developer workflows.
+            </p>
+            <ul>
+              <li>Implemented feature X that reduced manual work by Y%.</li>
+              <li>Wrote documentation and small scripts that the team continued using.</li>
             </ul>
-            <div class="resume-actions">
-              <!-- TODO: Make sure resume.pdf exists in the repo root -->
-              <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">
-                Download Resume (PDF)
-              </a>
-              <!-- Optional: direct email shortcut -->
-              <!-- TODO: Replace with your email -->
-              <a class="btn btn-ghost" href="mailto:you@example.com">
-                Email Me a Copy
-              </a>
+          </div>
+
+          <!-- Experience 2 -->
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Undergraduate Research Assistant</div>
+                <div class="item-sub">Lab / Department, Your University</div>
+              </div>
+              <div class="item-right">20XX – 20XX</div>
+            </div>
+            <p>
+              Assisted research on [topic], focusing on data processing and experimental
+              evaluation of models / algorithms.
+            </p>
+            <ul>
+              <li>Built data pipelines to clean and prepare datasets.</li>
+              <li>Helped analyze results and generate plots for presentations.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION & RESUME -->
+      <section id="resume">
+        <div class="shell">
+          <h2>Education & Resume</h2>
+          <div class="two-col">
+            <div>
+              <div class="item">
+                <div class="item-header">
+                  <div>
+                    <div class="item-title">B.S. in [Your Major]</div>
+                    <div class="item-sub">Your University</div>
+                  </div>
+                  <div class="item-right">20XX – 20XX (Expected)</div>
+                </div>
+                <p>
+                  Relevant coursework: Data Structures & Algorithms, Probability, Linear
+                  Algebra, Machine Learning, Systems Programming, Optimization.
+                </p>
+              </div>
+
+              <div class="item">
+                <div class="item-title">Highlights</div>
+                <ul>
+                  <li>Dean’s List / Scholarships (if applicable)</li>
+                  <li>Programming contests, hackathons, or clubs</li>
+                  <li>Teaching assistant or tutoring roles</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <p>
+                My resume summarizes my academic background, projects, and experience
+                in a single page. You can download a PDF copy below.
+              </p>
+              <div class="button-row">
+                <!-- TODO: ensure resume.pdf exists in repo root -->
+                <a class="btn" href="resume.pdf" target="_blank" rel="noopener noreferrer">
+                  Download Resume (PDF)
+                </a>
+                <!-- optional -->
+                <a class="btn btn-secondary" href="mailto:you@example.com">
+                  Request by Email
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- CONTACT -->
-      <section id="contact" class="section">
+      <section id="contact">
         <div class="shell">
-          <div class="section-header">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">
-              The best ways to reach me or follow my work.
-            </p>
-          </div>
-          <div class="contact-grid">
-            <div class="contact-card">
-              <p>
-                I’m always open to chatting about internships, research, side projects, or
-                anything related to software, ML, and math. If you think I’d be a good fit
-                for your team or collaboration, feel free to reach out.
-              </p>
-              <div class="contact-links">
-                <!-- TODO: Replace with your real email -->
-                <a class="contact-link" href="mailto:you@example.com">
-                  <span>✉</span> <span>you@example.com</span>
-                </a>
-                <!-- TODO: Replace with your profiles -->
-                <a class="contact-link" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
-                  <span>★</span> <span>GitHub</span>
-                </a>
-                <a class="contact-link" href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer">
-                  <span>in</span> <span>LinkedIn</span>
-                </a>
-              </div>
-            </div>
-            <div class="contact-card">
-              <div style="font-size:0.86rem; color:var(--text-muted); margin-bottom:0.5rem;">
-                Quick info
-              </div>
-              <ul style="list-style:none; font-size:0.86rem;">
-                <li><strong>Location:</strong> City, Country</li>
-                <li><strong>Timezone:</strong> [e.g. PST / GMT-8]</li>
-                <li><strong>Preferred roles:</strong> SWE, ML Engineer, Quant Intern</li>
-                <li><strong>Availability:</strong> Summer 20XX, part-time research</li>
-              </ul>
-            </div>
-          </div>
+          <h2>Contact</h2>
+          <p>
+            If you’d like to talk about internships, research, projects, or anything
+            related to software, ML, or math, feel free to reach out.
+          </p>
+          <p class="muted">
+            <!-- TODO: replace with your info -->
+            Email:
+            <a href="mailto:you@example.com">you@example.com</a><br />
+            GitHub:
+            <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">
+              github.com/YOUR_GITHUB_USERNAME
+            </a><br />
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer">
+              linkedin.com/in/YOUR_LINKEDIN
+            </a>
+          </p>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <footer>
       <div class="shell">
-        <span>© <span id="year"></span> Your Name. Built with GitHub Pages.</span>
+        <p>© <span id="year"></span> Your Name. All rights reserved.</p>
       </div>
     </footer>
   </div>
 
   <script>
-    // Simple script to keep the footer year up to date
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
